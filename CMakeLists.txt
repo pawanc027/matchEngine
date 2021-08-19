@@ -40,23 +40,10 @@ enable_testing()
 include(FindUnixCommands)
 
 # Define a function to simplify adding tests
-#function(do_test target input result expected_result info)
-#add_test(NAME test01 
-#         COMMAND sh -c "${target} < ${input} > ${result}" && ${CMAKE_COMMAND} -E compare_files "${result}" "${expected_result}")
-#  set_tests_properties(test01
-#    PROPERTIES PASS_REGULAR_EXPRESSION ${info}
-#    )
-#endfunction(do_test)
+function(do_test target input result expected_result)
+add_test(NAME test01 
+         COMMAND sh -c "${target} < ${input} > ${result}" && ${CMAKE_COMMAND} -E compare_files "${result}" "${expected_result}")
+endfunction(do_test)
 
 # Tests with Valid Input
-#do_test("${CMAKE_CURRENT_SOURCE_DIR}/build/bin/matchEngine" "${CMAKE_CURRENT_SOURCE_DIR}/test/test01_input.txt"  "${CMAKE_CURRENT_SOURCE_DIR}/test/temp" "${CMAKE_CURRENT_SOURCE_DIR}/test/test01_expected_output.txt" "test01")
-
-add_test (NAME test_setup COMMAND ${CMAKE_COMMAND} -E echo setup)
-add_test (NAME test_cleanup COMMAND ${CMAKE_COMMAND} -E echo cleanup)
-add_test (NAME test_foo COMMAND ${CMAKE_COMMAND} -E echo "needs fixture")
-
-
-set_tests_properties (test_setup   PROPERTIES FIXTURES_SETUP    FooThings)
-set_tests_properties (test_cleanup PROPERTIES FIXTURES_CLEANUP  FooThings)
-set_tests_properties (test_foo     PROPERTIES FIXTURES_REQUIRED FooThings)
-
+do_test("${CMAKE_CURRENT_SOURCE_DIR}/build/bin/matchEngine" "${CMAKE_CURRENT_SOURCE_DIR}/test/test01_input.txt"  "${CMAKE_CURRENT_SOURCE_DIR}/test/temp" "${CMAKE_CURRENT_SOURCE_DIR}/test/test01_expected_output.txt")

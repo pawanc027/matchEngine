@@ -2,7 +2,7 @@ Name: Pavan Kumar Chilamakuri
 
 Build and Run Instructions:
 
-   1) git clone 
+   1) git clone git@github.com:pawanc027/matchEngine.git
    2) cd matchEngine
    3) run ./test.sh
 
